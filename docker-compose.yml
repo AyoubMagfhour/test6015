@@ -4,7 +4,7 @@ services:
   chat_groupe:
     build:
       context: .
-      dockerfile: ./Back/CHAT-GROUPE/Dockerfile
+      dockerfile: ./Back/Chat_Groupe/Dockerfile
     ports:
       - "8084:8084"
     environment:
