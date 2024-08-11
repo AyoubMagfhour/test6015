@@ -105,6 +105,12 @@ public class SadmChatGroupeOMController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+	
+	@GetMapping
+	public String hello()
+	{
+		return "djsfnjdfujudsjudfgdfdgfg";
+	}
 
     private String extractJwtTokenFromHeader(HttpServletRequest request) {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);

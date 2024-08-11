@@ -46,5 +46,4 @@ public class SadmCliniqueOM {
     @Column(name = "com_sdesactive")
     private Integer comSdesactive;
 
-
 }
