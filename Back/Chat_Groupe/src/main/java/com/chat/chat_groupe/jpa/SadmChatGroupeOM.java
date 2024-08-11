@@ -49,5 +49,5 @@ public class SadmChatGroupeOM {
     @Column(name = "plgc_sfkdocteur")
     private Long plgcSFKDocteur;
 	
-	#testdfgdfdfg
+
 }
