@@ -3,8 +3,8 @@ version: '3'
 services:
   chat_groupe:
     build:
-      context: .
-      dockerfile: ./Back/Chat_Groupe/Dockerfile
+      context: ./Back/Chat_Groupe
+      dockerfile: Dockerfile
     ports:
       - "8084:8084"
     environment:
@@ -20,8 +20,8 @@ services:
 
   clinique:
     build:
-      context: .
-      dockerfile: ./Back/Clinique/Dockerfile
+      context: ./Back/Clinique
+      dockerfile: Dockerfile
     ports:
       - "8092:8092"
     environment:
@@ -37,8 +37,8 @@ services:
 
   dossier_medical:
     build:
-      context: .
-      dockerfile: ./Back/Dossier_Medical/Dockerfile
+      context: ./Back/Dossier_Medical
+      dockerfile: Dockerfile
     ports:
       - "8094:8094"
     environment:
@@ -54,8 +54,8 @@ services:
 
   gateway:
     build:
-      context: .
-      dockerfile: ./Back/GateWay/Dockerfile
+      context: ./Back/GateWay
+      dockerfile: Dockerfile
     ports:
       - "8888:8888"
     environment:
@@ -67,8 +67,8 @@ services:
 
   historique:
     build:
-      context: .
-      dockerfile: ./Back/Historique/Dockerfile
+      context: ./Back/Historique
+      dockerfile: Dockerfile
     ports:
       - "8085:8085"
     environment:
@@ -84,8 +84,8 @@ services:
 
   mot_cle:
     build:
-      context: .
-      dockerfile: ./Back/Mot_Cle/Dockerfile
+      context: ./Back/Mot_Cle
+      dockerfile: Dockerfile
     ports:
       - "8086:8086"
     environment:
@@ -101,8 +101,8 @@ services:
 
   patient:
     build:
-      context: .
-      dockerfile: ./Back/Patient/Dockerfile
+      context: ./Back/Patient
+      dockerfile: Dockerfile
     ports:
       - "8091:8091"
     environment:
@@ -118,8 +118,8 @@ services:
 
   rendez_vous:
     build:
-      context: .
-      dockerfile: ./Back/Rendez_vous/Dockerfile
+      context: ./Back/Rendez_vous
+      dockerfile: Dockerfile
     ports:
       - "8093:8093"
     environment:
@@ -135,8 +135,8 @@ services:
 
   suggestion_question:
     build:
-      context: .
-      dockerfile: ./Back/Suggestion_Question/Dockerfile
+      context: ./Back/Suggestion_Question
+      dockerfile: Dockerfile
     ports:
       - "8083:8083"
     environment:
@@ -152,8 +152,8 @@ services:
 
   system:
     build:
-      context: .
-      dockerfile: ./Back/system/Dockerfile
+      context: ./Back/system
+      dockerfile: Dockerfile
     ports:
       - "8081:8081"
     environment:
