@@ -1,0 +1,189 @@
+version: '3'
+
+services:
+  chat_groupe:
+    build:
+      context: .
+      dockerfile: ./Back/CHAT-GROUPE/Dockerfile
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_CHAT_GROUPE
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-CHAT-GROUPE
+      - SERVER_PORT=8084
+    depends_on:
+      - consul
+      - postgres
+
+  clinique:
+    build:
+      context: .
+      dockerfile: ./Back/Clinique/Dockerfile
+    ports:
+      - "8092:8092"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_CLINIQUE
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-CLINIQUE
+      - SERVER_PORT=8092
+    depends_on:
+      - consul
+      - postgres
+
+  dossier_medical:
+    build:
+      context: .
+      dockerfile: ./Back/Dossier_Medical/Dockerfile
+    ports:
+      - "8094:8094"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_DOSSIER_MEDICALE
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-DOSSIER-MEDICALE
+      - SERVER_PORT=8094
+    depends_on:
+      - consul
+      - postgres
+
+  gateway:
+    build:
+      context: .
+      dockerfile: ./Back/GateWay/Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-GATEWAY
+      - SERVER_PORT=8888
+    depends_on:
+      - consul
+
+  historique:
+    build:
+      context: .
+      dockerfile: ./Back/Historique/Dockerfile
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_HISTORIQUE
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-HISTORIQUE
+      - SERVER_PORT=8085
+    depends_on:
+      - consul
+      - postgres
+
+  mot_cle:
+    build:
+      context: .
+      dockerfile: ./Back/Mot_Cle/Dockerfile
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM-MOT-CLE
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-MOT-CLE
+      - SERVER_PORT=8086
+    depends_on:
+      - consul
+      - postgres
+
+  patient:
+    build:
+      context: .
+      dockerfile: ./Back/Patient/Dockerfile
+    ports:
+      - "8091:8091"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_PATIENT
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-PATIENT
+      - SERVER_PORT=8091
+    depends_on:
+      - consul
+      - postgres
+
+  rendez_vous:
+    build:
+      context: .
+      dockerfile: ./Back/Rendez_vous/Dockerfile
+    ports:
+      - "8093:8093"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_RENDEZ_VOUS
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-RENDEZ-VOUS
+      - SERVER_PORT=8093
+    depends_on:
+      - consul
+      - postgres
+
+  suggestion_question:
+    build:
+      context: .
+      dockerfile: ./Back/Suggestion_Question/Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_SUGGESTION_QUESTION
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-SUGGESTION-QUESTION
+      - SERVER_PORT=8083
+    depends_on:
+      - consul
+      - postgres
+
+  system:
+    build:
+      context: .
+      dockerfile: ./Back/system/Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/SADM_SYSTEM
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_APPLICATION_NAME=SERVICE-SYSTEM
+      - SERVER_PORT=8081
+    depends_on:
+      - consul
+      - postgres
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  consul:
+    image: hashicorp/consul:1.16.0
+    ports:
+      - "8500:8500"
+    command: "consul agent -dev -client=0.0.0.0"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+
+volumes:
+  postgres_data:

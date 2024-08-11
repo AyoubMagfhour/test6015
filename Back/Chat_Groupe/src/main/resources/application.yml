@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: SERVICE-CHAT-GROUPE
+  application:
+    name: SERVICE-CHAT-GROUPE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/SADM_CHAT_GROUPE
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+server:
+  port: 8084

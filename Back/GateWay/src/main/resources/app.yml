@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: service-historique
+          uri: lb://SERVICE-HISTORIQUE
+          predicates:
+            - Path=/SERVICE-HISTORIQUE/**
+        - id: service-chat-groupe
+          uri: lb://SERVICE-CHAT-GROUPE
+          predicates:
+            - Path=/SERVICE-CHAT-GROUPE/**
+        - id: service-system
+          uri: lb://SERVICE-SYSTEM
+          predicates:
+            - Path=/SERVICE-SYSTEM/**
+        - id: service-docteur
+          uri: lb://SERVICE-DOCTEUR
+          predicates:
+            - Path=/SERVICE-DOCTEUR/**
+        - id: service-mot-cle
+          uri: lb://SERVICE-MOT-CLE
+          predicates:
+            - Path=/SERVICE-MOT-CLE/**
+        - id: service-suggestion-question
+          uri: lb://SERVICE-SUGGESTION-QUESTION
+          predicates:
+            - Path=/SERVICE-SUGGESTION-QUESTION/**
